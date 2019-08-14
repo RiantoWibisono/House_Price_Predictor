@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="text-align: center">
+    <div style = "border-bottom: solid cornflowerblue 4px">
+        <h1>House Price Predictor for King County (includes Seattle), USA</h1>
+    </div>
+    <br><br>
+    <div class="jumbotron" style="padding:30px">
+        <h1>Your price prediction is:</h1>
+    </div>
+    <div class="p-3 mb-2 bg-info text-white">
+        <h2>Linear Regression:</h2>
+    </div>
+    <div class="p-3 mb-2 bg-light text-dark">
+        <ul>
+            <li><h4>Price: ${{ price_LR }}</h4></li>
+            <li><h4>Model score: {{ score_LR }}%</h4></li>
+        </ul>
+    </div>
+    <div class="p-3 mb-2 bg-success text-white">
+        <h2>Random Forest Regressor:</h2>
+    </div>
+    <div class="p-3 mb-2 bg-light text-dark">
+        <ul>
+            <li><h4>Price: ${{ price_RF }}</h4></li>
+            <li><h4>Model score: {{ score_RF }}%</h4></li>
+        </ul>
+    </div>
+    <div class="p-3 mb-2 bg-warning text-white">
+        <h2>Gradient Boosting Regressor:</h2>
+    </div>
+    <div class="p-3 mb-2 bg-light text-dark">
+        <ul>
+            <li><h4>Price: ${{ price_GB }}</h4></li>
+            <li><h4>Model score: {{ score_GB }}%</h4></li>
+        </ul>
+    </div>
+    <br>
+    <a href = "http://localhost:5001"><button class="btn btn-secondary">Back</button></a>
+    <br><br>
+</body>
+</html>

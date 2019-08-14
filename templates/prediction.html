@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="text-align: center">
+    <div style = "border-bottom: solid cornflowerblue 4px">
+        <h1>House Price Predictor for King County (includes Seattle), USA</h1>
+    </div>
+    <br><br>
+    <form style="align-items: center" action="http://localhost:5001/result" method="POST">
+        <div class="form-row" style="text-align: center; align-content: center; align-items: center; align-self: center">
+            <div class="form-group col-md-5" style="width: 40%; margin-left: 100px">
+                <label>Square footage of the home: </label>
+                <input name="sqft_living" class="form-control" placeholder="An average area is 1935 ft^2" required min="0" max="5000">
+            </div>
+            <div class="form-group col-md-5">
+                <label>Square footage of the lot: </label>
+                <input name="sqft_lot" class="form-control" placeholder="An average area is 9487 ft^2" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5" style="width: 40%; margin-left: 100px">
+                <label>Square footage of house apart from basement: </label>
+                <input name="sqft_above" class="form-control" placeholder="An average area is 1674 ft^2" required>
+            </div>
+            <div class="form-group col-md-5">
+                <label>Square footage of the basement: </label>
+                <input name="sqft_basement" class="form-control" placeholder="An average area is 261 ft^2" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3" style="width: 40%; margin-left: 100px">
+                <label>Total floors (levels)</label>
+                <select class="custom-select my-1 mr-sm-2" name="floors" required>
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3" style="width: 30%; margin-left: 55px">
+                <label>Number of bedrooms:</label>
+                <select class="custom-select my-1 mr-sm-2" name="bedrooms" required>
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="4">Four</option>
+                    <option value="5">Five</option>
+                    <option value="6">Six</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3" style="width: 30%; margin-left: 55px">
+                <label>Number of bathrooms:</label>
+                <select class="custom-select my-1 mr-sm-2" name="bathrooms" required>
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="4">Four</option>
+                    <option value="5">Five</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5" style="width: 40%; margin-left: 100px">
+                <label>Year built: </label>
+                <input name="yr_built" class="form-control" placeholder="Input year (between 1990 and 2015)" required>
+            </div>
+            <div class="form-group col-md-5">
+                <label>Year renovated: </label>
+                <input name="yr_renovated" class="form-control" placeholder="Input 0 for no rennovation" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5" style="width: 40%; margin-left: 100px">
+                <label>Living room area in 2015(implies -- some renovations): </label>
+                <input name="sqft_living15" class="form-control" placeholder="An average area is 1895ft^2" required>
+            </div>
+            <div class="form-group col-md-5">
+                <label>Lot size area in 2015(implies -- some renovations): </label>
+                <input name="sqft_lot15" class="form-control" placeholder="An average area is 8697 ft^2" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5" style="width: 40%; margin-left: 100px">
+                <label>Latitude coordinate: </label>
+                <input name="lat" class="form-control" placeholder="Houses in King County is located between 47.16 to 47.78 degrees" required>
+            </div>
+            <div class="form-group col-md-5">
+                <label>Longitude coordinate: </label>
+                <input name="long" class="form-control" placeholder="Houses in King County is located between -122.51 to -121.32 degrees" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5" style="width: 40%; margin-left: 100px">
+                <label>Has a view to a waterfront? </label>
+                <select class="custom-select my-1 mr-sm-2" name="waterfront" required>
+                    <option selected>Choose...</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group col-md-5">
+                <label>How good the overall condition?</label>
+                <select class="custom-select my-1 mr-sm-2" name="condition" required>
+                    <option selected>Choose...</option>
+                    <option value="5">Excellent</option>
+                    <option value="4">Good</option>
+                    <option value="3">Fair</option>
+                    <option value="2">Poor</option>
+                    <option value="1">Bad</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-10" style="width: 50%; margin-left: 320px">
+            <label>Overall grade given to the housing unit, based on King County grading system:</label>
+            <select class="custom-select my-1 mr-sm-2" name="grade" required>
+                <option selected>Choose...</option>
+                <option value="13">13</option>
+                <option value="12">12</option>
+                <option value="11">11</option>
+                <option value="10">10</option>
+                <option value="9">9</option>
+                <option value="8">8</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-info">Predict</button>
+    </form>
+    <br>
+    <a href = "http://localhost:5001"><button class="btn btn-secondary">Back</button></a>
+    <br><br>
+</body>
+</html>
